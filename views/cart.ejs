@@ -1,0 +1,231 @@
+<%-include('./partials/head')%>
+<%-include('./partials/header')%>
+<body style="background-color: rgb(241, 237, 237);">
+    <div class="overflow-hidden">
+        <div class="container mb-5">
+                <% if(cart){ %>
+                    <% if(cart.food_items.length == 0){ %>
+                        <div class="d-flex flex-column align-items-center justify-content-center" style="height: 100vh;">
+                            <img src="/images/kitchen-icon.png" width="250px" height="250px" alt="">
+                            <span style="font-size: 20px; font-weight: bold;">Your cart is empty</span>
+                            <span>You can go to home page to view more restaurants</span>
+                            <a href="/" class="mt-4" style="padding: 10px 15px 10px 15px; background-color: rgb(243, 135, 35); color: white; text-decoration: none; font-weight:bold; font-size: 16px;">SEE RESTAURANTS NEAR YOU</a>
+                        </div>
+                    <% }else{ %>
+                        <div class="row g-5 mt-5">
+                            <div class="col-md-8" style="position: relative;">
+                                <div class="timeline">
+                        
+                                    <div class="container-right-1  right">
+                                    <div class="content py-5">
+                                        <div class="p-3 d-flex flex-column" style="background-color: white;">
+                                            <div class="d-flex justify-content-between">
+                                            
+                                                <div class="d-flex flex-column">
+                                                    <span class="fs-4" style="font-weight: 500;">Account</span>
+                                                    <span style="color: gray;">To place your order now, log in to your existing account or sign up.</span>
+                                                    
+                                                    <div style="display:block">
+                                                        <div class="d-flex mt-3">
+                                                            <div class="d-flex flex-column left-login" style="border: 1px solid rgb(23, 221, 23);">
+                                                                <span class="text-center login-text">Have an account?</span>
+                                                                <span class="text-center" style="font-weight: 500; color: rgb(30, 179, 30); font-size: 15px;">LOG IN</span>
+                                                            </div>
+                                                            <div class="d-flex flex-column right-sign-up" style="background-color: rgb(24, 192, 24);">
+                                                                <span class="text-center signup-text">New a Swiggy?</span>
+                                                                <span class="text-center" style="color: white; font-weight: 500; font-size: 15px;">SIGN UP</span>
+                                                            </div>
+                                                        
+                                                        </div> 
+                                                    </div>
+
+                                                        
+                                                </div>
+                                                <div>
+                        
+                        
+                                                    <div class="p-3 display" style=" background-color: rgb(240, 235, 235); border-radius: 50%;">
+                                                        <img src="/images/roll.jpeg" height="100px" width="100px" style="border-radius: 50%;" alt="">
+                                                    </div>
+                                                
+                                                    
+                                                </div>
+                                                
+                                                </div>
+                                            
+                                        </div>
+                                    </div>
+                                    </div>
+                                    
+                                    <div class="container-right-2 right">
+                                    <div class="content">
+                                        <h4 class="text-secondary px-3 py-2">Delivery address</h4>
+                                
+                                    </div>
+                                    </div>
+                                    
+                                    <div class="container-right-3 right">
+                                    <div class="content">
+                                        <h4 class="text-secondary px-3 py-2">Payment</h4>        
+                                    </div>
+                                    </div>
+                                </div>
+                
+                            
+                                
+                                
+                            </div>
+                            <div class="col-md-4" >
+                                <div class="d-flex flex-column p-4" style="background-color: white;">
+                                    <% let total = 0 %>
+                                    <% let totalBill = 0 %>
+                                    <div class="d-flex" >
+                                        <img src="<%= restaurant.images[0] %>" width="50px" height="50px" alt="">
+                                        <div class="d-flex flex-column mx-2">
+                                            <span class="mx-2" style="font-weight: 500; font-size: 19px;"><%= restaurant.name %></span>
+                                            <div class="botom-border"></div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <% sum = 0 %>
+                                        <% for(let i=0;i<cart.food_items.length;i++){ %>
+                                            <% if(cart.food_items[i].type == 'customsiable'){ %>
+                                            <% for(let j=0;j<cart.food_items[i].customisation_items.length;j++){ %>
+                      
+                                                    <div class="d-flex justify-content-between mt-4">
+                                                        <div class="d-flex flex-column ">
+                                                           
+                                                            <div class="d-flex align-items-center">
+                                                                
+                                                                <img src="/images/vegicon.png" width="20px" height="20px" alt="">
+                                                                <span class="mx-2" style="width: 100px;"><%= food_names[i] %></span>
+                                                            </div>
+                                                            <span id="updateModal" data-food_id="<%= cart.food_items[i].id %>" data-restaurant_id="<%= cart.restaurant_id %>" class="coustomise-heading" data-item_id="<%= cart.food_items[i].customisation_items[j].id %>" data-type="customize" style="cursor: pointer;" class="coustomise-heading" data-bs-toggle="modal" data-bs-target="#cart-modal">Customize<i class="bi bi-caret-right-fill" style="font-size: 10px; color: orangered;"></i></span>
+                                                        </div>        
+                                                           
+                                                           <div class="d-flex" style="border: 1px solid lightgray; height: 35px; padding: 5px;">
+                                                            <i data-food_id="<%= cart.food_items[i].id %>" data-restaurant_id="<%= cart.restaurant_id %>" data-type="customsiable" data-item_id ="<%= cart.food_items[i].customisation_items[j].id %>" class="bi bi-dash text-success subtract-btn" style="cursor: pointer;"></i>
+                                                               <span class="mx-2 ms-2" id="quantity-<%= cart.food_items[i].customisation_items[j].id%>" data-food_id="<%=cart.food_items[i].id %>" data-restaurant_id="<%=cart.restaurant_id%>">  <%= cart.food_items[i].customisation_items[j].quantity %> </span>
+                           
+                                                                <i class="bi bi-plus" data-bs-toggle="modal" data-bs-target="#plus-item-<%= cart.food_items[i].customisation_items[j].id %>" style="cursor: pointer;"></i>
+                                                        
+                                                            
+                                 
+                                                           </div>
+                                                           <% total = cart.food_items[i].customisation_items[j].price * cart.food_items[i].customisation_items[j].quantity %> 
+                                                           <span id="total-price-<%= cart.food_items[i].customisation_items[j].id  %>">₹<%= total %></span>
+                                                          <% sum += total %> 
+                    
+                                                    </div>
+                                                   
+                                                    <div id="plus-item-<%= cart.food_items[i].customisation_items[j].id %>" class="modal" tabindex="-1">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <h5 class="modal-title">Repeat last used customization?</h5>
+                                                              <button id="repeat-close-btn-<%= cart.food_items[i].customisation_items[j].id  %>" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="d-flex justify-content-center">
+                                                                    <button data-food_id="<%= cart.food_items[i].id %>" data-restaurant_id="<%= cart.restaurant_id %>" class="p-2 px-4 mx-3 customisable" type="button" style="border: 1px solid rgb(25, 231, 25); color: rgb(25, 231, 25);" data-bs-toggle="modal" data-bs-target="#cart-modal">I'LL CHOOSE</button>
+                                                                    <button  data-restaurant_id="<%=cart.restaurant_id%>" data-food_id="<%=cart.food_items[i].id%>" data-item_id="<%= cart.food_items[i].customisation_items[j].id %>" type="button"  class="p-2 px-4 bg-success repeat-item" style="color: white; border: none;" >REPEAT LAST</button>
+                                                                </div>
+                                                            </div>
+                                                
+                                                          </div>
+                                                        </div>
+                                                      </div>   
+                                               <% } %>
+                                           <% } %>
+                                           <% if(cart.food_items[i].type == 'simple'){ %>
+                                            <div id="cart-item-<% cart.food_items[i].id %>" class="d-flex justify-content-between mt-4">
+                                                <div class="d-flex flex-column ">
+                                                   
+                                                    <div class="d-flex align-items-center">
+                                                        
+                                                        <img src="/images/vegicon.png" width="20px" height="20px" alt="">
+                                                        <span class="mx-2" style="width: 100px;"><%= food_names[i] %></span>
+                                                    </div>
+                            
+                                                </div>        
+                                                   
+                                                   <div class="d-flex" style="border: 1px solid lightgray; height: 35px; padding: 5px;">
+                                                    <i data-food_id="<%=cart.food_items[i].id %>" data-restaurant_id="<%=cart.restaurant_id %>"  data-type="simple"  class="bi bi-dash text-success subtract-btn" style="cursor: pointer;"></i> 
+                                                       <span class="mx-2 ms-2" id="quantity-<%=cart.food_items[i].id %>" data-food_id="<%=cart.food_items[i].id %>" data-restaurant_id="<%=cart.restaurant_id%>">  <%= cart.food_items[i].quantity %> </span>
+                                                    
+                                                        <i data-food_id="<%= cart.food_items[i].id %>" data-restaurant_id="<%=cart.restaurant_id %>" class="bi bi-plus  text-success plus-btn" style="cursor: pointer;"></i>
+                                                     
+                         
+                                                   </div>
+                                                   <% total = cart.food_items[i].price * cart.food_items[i].quantity %> 
+                                                   <span id="total-price-<%= cart.food_items[i].id %>">₹<%= total %></span>
+                                                   <% sum += total %>
+                                            </div> 
+    
+                                           <% } %>
+                                                                              
+                                            <% } %>
+                                       
+                                    </div>
+                                    <div class="mt-4 d-flex p-3" style="background-color: rgb(252, 243, 243);">
+                                        <img src="/images/double-quatattion.png" width="19px" height="19px" alt="">
+                                        <input class="w-100" type="text" style="border: 0; background-color: rgb(252, 243, 243); outline: none;" placeholder="Any suggestions? we will pass on...">
+                                    </div>
+                
+                                    <div class="d-flex flex-column mt-3">
+                                        <span style="font-weight: 500; font-size: 15px;">Bill Details</span>
+                                        <div class="d-flex justify-content-between mt-2">
+                                            <span class="text-secondary">Item Total</span>
+                                            <span class="text-secondary">₹<%=sum%></span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mt-2">
+                                            <span class="text-secondary">Delivery Fee | 3.0 kms</span>
+                                            <span class="text-secondary">₹52.50</span>
+                                        </div>
+                                        <div class="mt-3" style="border-bottom: 1px solid lightgrey;"></div>
+                                        <div class="d-flex justify-content-between mt-3">
+                                            <span class="text-secondary">GST and Restaurant Charges</span>
+                                            <span class="text-secondary">18%</span>
+                                        </div>
+                                        <div class="mt-4" style="border-bottom: 2px solid black;"></div>
+                                        <div class="d-flex justify-content-between mt-3">
+                                            <span style="font-weight: 600;">TO PAY</span>
+                                            <% gst = sum*0.18 %>
+                                            <% totalBill = sum+gst %>
+                                            <span id="total-bill" style="font-weight: 600;">₹<%=totalBill%></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="placed" class="mt-3 text-center p-1 px-2" style="background-color: rgb(231, 88, 36); color: white; font-weight: 500;cursor: pointer;">Place order</div>
+                            </div>
+                        </div>
+                    <% } %>
+                <% }else{ %>
+                    <div class="d-flex flex-column align-items-center justify-content-center" style="height: 100vh;">
+                        <img src="/images/kitchen-icon.png" width="250px" height="250px" alt="">
+                        <span style="font-size: 20px; font-weight: bold;">Your cart is empty</span>
+                        <span>You can go to home page to view more restaurants</span>
+                        <a href="/" class="mt-4" style="padding: 10px 15px 10px 15px; background-color: rgb(243, 135, 35); color: white; text-decoration: none; font-weight:bold; font-size: 16px;">SEE RESTAURANTS NEAR YOU</a>
+                    </div>
+                   
+                <% } %>
+        </div>     
+    </div>
+</div>
+<div id="cart-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+      
+        <div id="add-ons-details" class="modal-body" style="border-radius: 0px;">
+            
+     
+            
+        </div>
+        
+      </div>
+    </div>
+  </div>
+<script src="/js/cart.js"></script>
+</body>
+<%-include('./partials/script')%>
+

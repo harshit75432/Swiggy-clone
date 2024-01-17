@@ -1,0 +1,139 @@
+<nav class="navbar navbar-expand-lg" style="box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.2), 0 0px 8px 0 rgba(0, 0, 0, 0.19); background-color: white;">
+    <div class="container-fluid">
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse px-5" id="navbarSupportedContent">
+      <a href="/"><img class="logo" src="/images/logo.png" height="50px" width="50px" alt=""></a>  
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="d-flex justify-content-between">
+                <li class="nav-item">
+                  <a class="nav-link active other" aria-current="page" href="#">Other  <i class="bi bi-chevron-down"></i></a>
+                </li>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/cart">Something else here</a></li>
+                  </ul>
+                </li>
+         
+              </ul>
+              <ul class="navbar-nav me-end mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active other mx-2" aria-current="page" href="#"><i class="bi bi-search mx-2"></i>Search</a>
+  
+                </li>
+  
+                <li class="nav-item ms-5">
+  
+                    <div class="d-flex align-items-center">
+                      <img class="" src="/images/offer.png" height="20px" width="20px" alt="">
+                      <a class="nav-link active offer" aria-current="page" href="#">Offer<sup class="ancor">NEW</sup></a>
+                    </div>
+                </li>
+                <li class="nav-item ms-5">
+  
+                  <div class="d-flex align-items-center">
+                    <img class="" src="/images/helplogo.png" height="15px" width="15px" alt="">
+                    <a class="nav-link active other" aria-current="page" href="#">Help</a>
+                  </div>
+              </li>
+              <li class="nav-item ms-5">
+  
+                <div class="d-flex align-items-center">
+                  
+                  <a class="nav-link active other" data-bs-toggle="offcanvas" href="#sign-up" role="button" aria-controls="offcanvasExample" aria-current="page" href="#"><i class="bi bi-person mx-1"></i>Sign In</a>
+                </div>
+            </li>
+            <li class="nav-item ms-5">
+  
+              <div class="d-flex align-items-center">
+                
+                <a class="nav-link active other" aria-current="page" href="/cart"><i class="bi bi-cart-plus mx-1"></i> Cart</a>
+              </div>
+          </li>
+              </ul>
+            </div>
+        
+         
+      </div>
+    </div>
+  </nav>
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="sign-up" aria-labelledby="offcanvasLabel">
+    <div class="offcanvas-body">
+        <button id="close-btn" type="button" class="btn-close mb-2" data-bs-dismiss="offcanvas" aria-label="Close"></button> 
+        <div id="sign-up-div" class="flex-column" style="padding: 10px; width: 250px; 
+         display: none;">
+            <div class="d-flex justify-content-between align-items-center">
+            
+                <div class="d-flex flex-column">
+                    <span class="sign-up-heading">Sign up</span>
+                    <span class="refference-text">or <span id="sign-up-to-login" class="ancor">login to your account</span></span>
+                    <div style="border-bottom: 1px solid black; width: 25px; margin-top: 10px;"></div>
+                </div>
+               <div class="roll-img">
+                    <img src="/images/roll.jpeg" height="40px" width="40px" alt="" style="border-radius: 50%;">
+               </div>
+            </div>
+            <form id="sign-up-form" method="post">
+
+                <table class="table table-bordered mt-3">
+                    <tbody>
+                      <tr>
+                       
+                        <td><input id="name" type="text" placeholder="Name" style="outline: none; border: none; font-size: 12px;" required></td>
+                      </tr>
+                      <tr>
+                       
+                        <td><input id="email" type="email" placeholder="Email" style="outline: none; border: none; font-size: 12px;" required></td>
+                      </tr>
+                      <tr>
+                        <td><input id="phone-number"  type="number"  placeholder="Phone number" style="outline: none; border: none; font-size: 12px;"  required></td>
+                      </tr>
+                      <tr>
+                        <td><input id="password" type="password" placeholder="Password" style="outline: none; border: none; font-size: 12px;" required></td>
+                      </tr>
+                        
+                      
+                      <tr>
+                        <td><input id="confirm-password" type="password" placeholder="Confirm password" style="outline: none; border: none; font-size: 12px;" autocomplete="off" required></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="sign-up-btn">CONTINUE</button>
+            </form>
+        </div>
+        <div id="login-div" class="flex-column" style="padding: 10px; width: 250px;">
+            <div class="d-flex justify-content-between align-items-center">
+            
+                <div class="d-flex flex-column">
+                    <span class="sign-up-heading">Login</span>
+                    <span class="refference-text">or <span id="login-to-signup" class="ancor">Create an account</span></span>
+                    <div style="border-bottom: 1px solid black; width: 25px; margin-top: 10px;"></div>
+                </div>
+               <div class="roll-img">
+                    <img src="/images/roll.jpeg" height="40px" width="40px" alt="" style="border-radius: 50%;">
+               </div>
+            </div>
+            <form id="login-form" method="post">
+
+                <table class="table table-bordered mt-3">
+                    <tbody>
+                       <tr>
+                        <td><input id="login-email" type="email" placeholder="Email" style="outline: none; border: none; font-size: 12px; width: 100%;" required></td>
+                      </tr>
+    
+                      <tr>
+                        <td><input id="login-password" type="password" placeholder="Password" style="outline: none; border: none; font-size: 12px; width: 100%;" required></td>
+                      </tr>
+                    
+                    </tbody>
+                  </table>
+                  <button type="submit" class="sign-up-btn">LOGIN</button>
+            </form>
+        </div>
+    </div>
+  </div>

@@ -1,0 +1,137 @@
+<%-include('./partials/head')%>
+
+<body style="background-color: rgb(255, 250, 250);">
+    <div class="overflow-x-hidden">
+
+        <div class="container">
+            
+            <div class="d-flex justify-content-center mb-2">
+                <img src="https://cdn.freelogovectors.net/wp-content/uploads/2023/11/swiggy-logo-freelogovectors.net_.png" height="80px" alt="">
+            </div>
+            <div class="d-flex justify-content-between mb-4">
+                <span class="page" style="font-size: 13px;"><a href="/admins" style="text-decoration: none; color: gray; font-size: 13px;">Home</a>/<%= details.name %></span>
+                <div>
+                    <span id="approve" data-restaurant_id="<%= details._id %>" class="approve">Block</span>
+                    <a class="mx-2 edit" href="/editrestaurantitem/<%= details._id %>/<%= location %>">Edit</a>
+                    <span  class="mx-2 delete" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</span>
+                </div>
+                
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="d-flex flex-column p-5 rounded-3 details-div mb-5">
+                    <h4 class="text-center mb-5">Details</h4>
+                    
+                        <span class="mb-4" style="font-size: 17px; font-weight: bold; color: gray;"> Images: </span>
+                        <div class="d-flex justify-content-center">
+                            <div id="carouselExampleIndicators" class="carousel slide" style="width: 100%; height: 300px;">
+                                <div class="carousel-indicators">
+                             <% for(let i=0;i<details.images.length;i++){ %>
+                                <%if(i == 0){%>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%= i %>"   class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <% }else{ %>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%= i %>" aria-current="true" aria-label="Slide 1"></button>
+                                <% } %>
+                                 
+
+                             <% } %>     
+                                </div>
+                                <div class="carousel-inner">
+                                   <% for(let j=0;j<details.images.length;j++){ %>
+                                    <% if(j == 0){ %>
+                                        <div class="carousel-item active" style="width: 100%;">
+                                          <img src="<%= details.images[j] %>" class="d-block" height="300px" width="100%" alt="...">
+                                        </div>
+
+                                    <% }else{ %>
+                                        <div class="carousel-item" style="width: 100%;">
+                                            <img src="<%= details.images[j] %>" class="d-block" height="300px" width="100%" alt="...">
+                                          </div>
+                                    <% } %>
+                                   <% } %>
+                               
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Next</span>
+                                </button>
+                          
+            
+                            </div>
+
+                        </div>
+        <div class="d-flex mt-5">
+            <span class="heading">Name:</span>
+            <span class="mx-2 custom-text"><%= details.name %>
+                
+            </span>
+        </div>
+        <div class="d-flex mt-5">
+            <span class="heading">Location:</span>
+            <span class="mx-2 custom-text" ><%= location %></span>
+        </div>
+        <div class="d-flex mt-5">
+            <span class="heading">Address:</span>
+            <span class="mx-2 custom-text" ><%= details.address %></span>
+        </div>
+        <div class="d-flex mt-5">
+            <span class="heading">Price for two:</span>
+            <span class="mx-2 custom-text"><%= details.
+                price_for_two %></span>
+        </div>
+
+        <div class="d-flex mt-5">
+            <span class="heading">Opening time:</span>
+            <span class="mx-2 custom-text"><%= details.
+                opening_time
+                 %></span>
+        </div>
+        <div class="d-flex mt-5">
+            <span class="heading">Closing time:</span>
+            <span class="mx-2 custom-text" ><%= details.closing_time %></span>
+        </div>
+        <div class="d-flex mt-5">
+            <span class="heading">Description:</span>
+            <span class="mx-2 custom-text"><%= details.description %></span>
+        </div>
+        <div class="d-flex mt-5">
+            <span class="heading">Food categories:</span>
+            <div class="d-flex flex-column">
+               <% for(i=0;i<details.food_categories.length;i++){ %>
+                <div class="d-flex">
+                    <i class="bi bi-chevron-double-right ms-2"></i>
+                    <span class="mx-2 custom-text"><%= details.food_categories[i] %></span>
+                </div>
+               <% } %>
+            </div>
+        </div>
+                </div>
+    
+            </div>
+        </div>
+
+    </div>
+
+    <div id="delete-modal" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Delete</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure to delete?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button id="delete" data-restaurant_id="<%= details._id %>" type="button" class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="/js/adminrestaurantdetails.js"></script>
+    <%-include('./partials/script') %>
+</body>

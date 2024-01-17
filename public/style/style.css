@@ -1,0 +1,517 @@
+.other{
+    color: black;
+    text-decoration: none;
+    font-size: 8px;
+    font-weight: 750;
+    border-bottom: 1px solid black;
+    padding-bottom: 3px;
+}
+
+.other:hover{
+    color: orangered;
+    border-bottom: 1px solid orangered;
+}
+.navbar-nav .nav-link.active:hover{
+    color: orangered;
+}
+
+.down-arrow{
+    font-size: 8px;
+    margin-left: 7px;
+    color: orangered;
+    -webkit-text-stroke-width: 0.8px;
+    
+}
+
+.logo:hover{
+    transform: translateY(-3px) scale(1.008) translateZ(0);
+    box-shadow: 0 24px 36px rgba(0,0,0,0.11),
+      0 24px 46px var(--box-shadow-color);
+    cursor: pointer;
+}
+
+.search-icon{
+    font-size: 8px;
+    -webkit-text-stroke-width: 0.6px;
+    color: black
+}
+.search-icon:hover{
+    color: orangered;
+}
+
+.other-div{
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.search-text{
+    font-size: 8px;
+    margin-left: 8px;
+    font-weight: 500;
+    color: black;
+    outline: none;
+}
+.search-text:hover{
+    color: orangered;
+}
+
+.search-div:hover,.search-text:hover,.search-icon:hover{
+    color: orangered !important;
+    cursor: pointer;
+}
+
+.offer{
+    font-size: 8px;
+    margin-left: 5px;
+    font-weight: 500;
+}
+
+.offer-new{
+    margin-left: 2px;
+    color: orangered;
+}
+
+.offer-div{
+    text-decoration: none; 
+    color: black;
+
+}
+
+.offer-div:hover{
+    color: orangered;
+}
+
+.person-icon{
+    font-size: 10px;
+}
+
+.cart{
+    font-size: 10px;
+}
+
+.best-offer{
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.home-container{
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.page{
+    font-size: 12px;
+    color: gray;
+}
+.hotel-name{
+    color:rgb(63, 62, 62);
+    font-weight: 500;
+    font-size: 15px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 5px;
+    display:inline-block;
+    width:100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.rating{
+    font-weight: 700;
+    font-size: 12px;
+    
+    color: black;
+    margin-left: 5px;
+}
+.time{
+    font-size: 12px;
+    font-weight: 500;    
+}
+
+.categories{
+    font-size: 13px;
+    font-weight: 350;
+    display:inline-block;
+    width:100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.discount{
+    position: absolute;
+    bottom: 5px;
+    left:8px;
+    color: white;
+    font-weight: 1000;
+    font-size: 12px;
+}
+.resturant{
+    cursor: pointer;
+}
+.resturant:hover{
+    transform: translateY(-5px) scale(1.005) translateZ(0);
+    box-shadow: 0 24px 36px rgba(0,0,0,0.11),
+      0 24px 46px var(--box-shadow-color);
+}
+
+.sign-up-heading{
+    font-weight: 500;
+    font-size: 20px;
+}
+.heading{
+    font-size: 17px; 
+    font-weight: bold; 
+    color: gray; 
+    width: 150px;
+}
+.custom-text{
+    color: orangered; 
+    width: 300px;
+    overflow-wrap:break-word; 
+    font-size: 18px; 
+    font-weight: 500;
+}
+.ancor{
+    color: orangered;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.refference-text{
+    font-size: 8px;
+}
+
+.roll-img{
+    padding: 10px;
+    background-color: rgb(211, 211, 211,0.2);
+    border-radius: 50%;
+}
+
+.sign-up-btn{
+    border:none;
+    background-color: rgb(241, 122, 79);
+    color: white;
+    width: 100%;
+    font-size: 13px;
+}
+.card{
+    width: 100% !important;
+    position: relative;
+}
+.dashbord{
+    position:fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+
+/* Add Button */
+.add-button{
+    
+    color: green;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+}
+
+.quantity-button{
+    
+    color: green;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+}
+
+.botom-border{
+    border: 1px solid black;
+    width: 55px;
+    margin-left: 12px;
+    margin-top: 10px;
+}
+.add-item-div{
+    position: absolute;
+    background-color: white;
+    width: 70px;
+    border-radius: 10px;
+    bottom: 18px;
+    left: 15px;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2), 0px 8px 10px 0px rgba(0, 0, 0, 0.19);
+}
+.coustomise-heading{
+    margin-left: 29px;
+    font-size: 12px;
+}
+{
+    box-sizing: border-box;
+  }
+
+  .left-login{
+    padding: 10px 12px;
+    margin-right: 20px;
+    width: 100%;
+}
+
+.right-sign-up{
+    padding: 10px 12px;
+    width: 100%;
+}
+  
+  body {
+    background-color: #474e5d;
+    font-family: Helvetica, sans-serif;
+  }
+  
+  /* The actual timeline (the vertical ruler) */
+  .timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+ 
+  /* The actual timeline (the vertical ruler) */
+  .timeline::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background-color: white;
+    top: 0;
+    bottom: 0;
+    margin-left: -3px;
+  }
+  
+  /* Container around content */
+  .container-right-1 {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 100%;
+  }
+  
+  .container-right-2 {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 100%;
+  }
+  .container-right-3 {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 100%;
+  }
+  /* The circles on the timeline */
+  .container-right-1::after {
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    right: -17px;
+    background-image: url('/images/person.jpg');
+    background-size: 35px 35px;
+    top: 15px;
+    z-index: 1;
+  }
+ 
+  .container-right-2::after {
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    right: -17px;
+    background-image: url('/images/location-icon.jpg');
+    background-size: 35px 35px;
+    top: 15px;
+    z-index: 1;
+  }
+
+  .container-right-3::after {
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    right: -17px;
+    background-image: url('/images/wallet-icon.png');
+    background-size: 35px 35px;
+    top: 15px;
+    z-index: 1;
+  }
+  /* Place the container to the left */
+  .left {
+    left: 0;
+  }
+  
+  /* Place the container to the right */
+  .right {
+    left: 0%;
+  }
+  
+  /* Add arrows to the left container (pointing right) */
+  .left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: medium solid white;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent white;
+  }
+  
+  /* Add arrows to the right container (pointing left) */
+  .right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+  }
+  
+  /* Fix the circle for containers on the right side */
+  .right::after {
+    left: -16px;
+  }
+  
+  /* The actual content */
+  .content {
+    padding: 20px 30px;
+    background-color: white;
+    position: relative;
+    border-radius: 6px;
+  }
+  
+.login-text{
+    font-size: 15px;
+    color: rgb(23, 221, 23);
+}
+.signup-text{
+    color: white; 
+    font-size: 15px;
+}
+.details-div{
+    background-color: white;
+    width: 600px;
+}
+
+.edit{
+  
+    padding: 7px 10px 7px 10px;
+    background-color: blue;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+}
+.delete{
+    font-weight: 500;
+    padding: 7px 10px 7px 10px;
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+
+    cursor: pointer;
+}
+.approve{
+    font-weight: 500;
+    padding: 7px 10px 7px 10px;
+    background-color: green;
+    border-radius: 5px;
+    color: white;
+
+    cursor: pointer;
+}
+
+  /* Media queries - Responsive timeline on screens less than 600px wide */
+  @media screen and (max-width: 600px) {
+    /* Place the timelime to the left */
+    .timeline::after {
+    left: 31px;
+    }
+    
+    .heading{
+        font-size: 17px; 
+        font-weight: bold; 
+        color: gray; 
+        width: 150px;
+    }
+    .custom-text{
+        color: orangered; 
+        width: 200px;
+        overflow-wrap:break-word; 
+        font-size: 18px; 
+        font-weight: 500;
+    }
+    .details-div{
+        background-color: white;
+        width: 400px;
+    }
+    /* Full-width containers */
+    .container-right {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+    }
+    
+    /* Make sure that all arrows are pointing leftwards */
+    .container-right::before {
+    left: 60px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+    }
+  
+    /* Make sure all circles are at the same spot */
+    .left::after, .right::after {
+    left: 15px;
+    }
+    
+    /* Make all right containers behave like the left ones */
+    .right {
+    left: 0%;
+    }
+  }
+.add-on-heading{
+    font-size:20px;font-family: 'Lato', sans-serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Pacifico', cursive;
+font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Ubuntu', sans-serif; font-weight: 550;
+}
+
+@media only screen and (max-width: 441px){
+   
+    .best-offer{
+        font-size: 19px;
+        margin-bottom: 25px;
+    }
+ 
+ 
+}
+
+@media only screen and (max-width: 1026px){
+    .display{
+        display: none;
+    }
+    .login-text{
+        display: none;
+    }
+    .signup-text{
+        display: none;
+    }
+
+}

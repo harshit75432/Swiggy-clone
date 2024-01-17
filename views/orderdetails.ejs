@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiggy</title>
+    <link rel="stylesheet" href="/style/orderdetails.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+</head>
+<body style="background-color: rgb(247, 145, 73);">
+
+    <div class="overflow-hidden">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-center mt-5 mb-5">
+                <div class="d-flex flex-column p-5" style="background-color: rgb(243, 238, 238); width: 800px; box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.4), 3px 6px 20px 0 rgba(0, 0, 0, 0.4);">
+                    <div class="d-flex justify-content-center mb-3">
+                        <img src="https://cdn.freelogovectors.net/wp-content/uploads/2023/11/swiggy-logo-freelogovectors.net_.png" height="80px" alt="">
+
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex flex-column w-100 p-2 text-center" style="background-color: white;">
+                            <span style="color: gray;">Order#</span>
+                            <span style="font-weight: bold;">sdvsv</span>
+                        </div>
+                        <div class="d-flex flex-column w-100 ms-2 p-2 text-center" style="background-color: white;">
+                           
+                                <span style="color: gray;">Pickup Time</span>
+                                <span style="font-weight: bold;">sdvsv</span>
+                         
+                        </div>
+                     
+                            <div class="d-flex flex-column w-100 ms-2 p-2 text-center" style="background-color: white;">
+                                <span style="color: gray;">ETA</span>
+                                <span style="font-weight: bold;">N/A</span>
+                            </div>
+                        
+                    </div>
+                    <div class="mt-2 p-2" style="background-color: white; position: relative; height: 170px;">
+                        <ul class="timeline">
+                            <li class="point"  data-text="placed"></li>
+                            <li class="point" data-text="Confirmed"></li>
+                            <li class="without-point" data-text="In progress"></li>
+                            <li class="without-point" data-text="Ready to Pickup"></li>
+                            <li class="without-point" data-text="Complete"></li>
+                        </ul>  
+                    </div>
+                    <h5 class="mt-3">Order Info</h5>
+                    <div class="mt-2 p-4 px-5" style="background-color: white;">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-column">
+                                <span style="color: gray;">Customer name</span>
+                                <span style="font-weight: bold;">sdvsv</span> 
+                            </div>
+                            <div class="d-flex flex-column align-items-center">
+                                <span style="color: gray;">Restaurant name</span>
+                                <span style="font-weight: bold;">sdvsv</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-1">
+                            <div class="d-flex flex-column">
+                                <span style="color: gray;">Pament methord</span>
+                                <span style="font-weight: bold;">Online payment</span> 
+                            </div>
+                            <div class="d-flex flex-column mx-3">
+                                <span style="color: gray;">Account#</span>
+                                <span style="font-weight: bold;">7894561</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 p-3" style="background-color: white;">
+                        <table>
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Food name</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Amount</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+              
+        
+                              
+                                <% for(let i=0;i<order.food_items.length;i++){ %>
+                                  <% if(order.food_items[i].type == 'simple'){ %>
+                                   <tr>
+                                     <td data-label="#"></td>
+                                     <td data-label="Order id"></td>
+           
+                                     <td data-label="Amount"></td>
+                                     <td data-label="Customer Name"></td>
+                                     <td data-label="Date"></td>
+                     
+                                   </tr >
+                                  <% }else{ %>
+                                      <% for(let j=0;j<order.food_items[i].customisation_items.length;j++){ %>                               
+                                       <tr>
+                                        <td data-label="#"></td>
+                                        <td data-label="Order id"></td>
+              
+                                        <td data-label="Amount"></td>
+                                        <td data-label="Customer Name"></td>
+                                        <td data-label="Date"></td>
+                                  
+                                       </tr>
+                                     <% } %>
+                               <% } %>
+                             <% } %>
+    
+                                              
+                            </tbody>
+                          </table>  
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-3 p-2">
+                        <span class="btn btn-primary">Accepted</span>
+                        <span class="btn btn-secondary mx-2">Unconfirm order</span>
+                        <span class="btn btn-secondary mx-2">Reschedule order</span>
+                        <span class="btn btn-danger">Cancel order</span>
+                    </div>
+
+                    <h5 class="mt-2">Pickup Info</h5>
+                    <div class="mt-2 p-2" style="background-color: white;">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-column w-100 ms-2 p-2 text-center" style="background-color: white;">
+                                <span style="color: gray;">Pickup person</span>
+                                <span style="font-weight: bold;">Mukesh ambani</span>
+                            </div>
+                            <div class="d-flex flex-column w-100 ms-2 p-2 text-center" style="background-color: white;">
+                                <span style="color: gray;">phone #</span>
+                                <span style="font-weight: bold;">9764123584</span>
+                            </div>
+                            <div class="w-100 d-flex justify-content-center">
+                                <img src="https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg" width="70px" height="70px" style="border-radius: 50%; object-fit: cover;" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 p-2" style="background-color: white;">
+                        <div class="d-flex justify-content-between align-items-center p-3">
+                            <div class="d-flex flex-column">
+                                <span style="color: gray;">Vehicle info:</span>
+                                <span style="font-weight: bold;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima et dolorem distinctio minus ea? </span>
+                            </div>
+                            <div>
+                                <img src="https://bd.gaadicdn.com/processedimages/indian/scout-bobber/source/scout-bobber62eb4a0d92990.jpg?tr=w-375" width="70px" height="70px" style="border-radius: 50%; object-fit: cover;" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiggy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/css/multi-select-tag.css"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+</head>
+<body style="background-color: rgb(171, 168, 168,0.2);">
+    <div class="container">
+        <div class="d-flex justify-content-between mb-4">
+            <span class="page" style="font-size: 13px;"><a href="/admins" style="text-decoration: none; color: gray; font-size: 13px;">Home</a>/<a href="/admin_resturant_details/<%=location %>/<%= restaurant._id %>" style="text-decoration: none; color: gray; font-size: 13px;">Details </a>/Edit</span>
+        </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="d-flex flex-column p-5 rounded-2" style="width: 600px; background-color: white; box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <h4 class="mb-5 text-center" style="color: rgb(13, 12, 12,0.5); font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">Edit Restaurant</h4>
+                    <form id="addrestaurant-form" method="post">
+                     
+                        <div class="row g-3 mb-3">
+                            <% for(let i=0;i<restaurant.images.length;i++){ %>
+                                <div id="image-div-<%= i %>" class="col-md-4" style="position: relative; margin: 0px;">
+                                    <img  src="<%= restaurant.images[i] %>" width="100%" height= "100%" alt="">
+                                    <div style="position: absolute; top: 6px; right: 15px;">
+                                        <i id="delete-pic-<%= i %>" class="bi bi-x-lg text-danger fs-5 delete-pic" style="-webkit-text-stroke-width: 1px; cursor: pointer;" data-image-url="<%= restaurant.images[i] %>"></i>   
+                                    </div>
+                                </div>
+                           <% } %>
+                        </div>
+                      <% if(restaurant.images.length > 0){%>
+                        <input files="restaurant.images.length"  id="images-select" class="form-control" type="file" multiple="multiple" >
+                      <% }else{ %>
+                        <input files="restaurant.images.length"  id="images-select" class="form-control" type="file" multiple="multiple" required>
+                     <% } %>
+                        <input value="<%=restaurant.name%>" id="restaurant-name" class="form-control mt-3" name="restaurant" placeholder="Restaurant name" type="text" required>
+                        <select id="location" name="location" class="form-select mt-3" aria-label="Default select example" required>
+                            <option value="" disabled selected>Please select restaurant's location</option>
+                           <% for(let i=0; i<locations.length;i++){ %>
+                               <option value="<%= locations[i]._id %>" <%= locations[i]._id.toString() == restaurant.location.toString() && 'selected' %> ><%= locations[i].name %></option>
+                           <% } %>
+                        </select>
+                        <input id="price" value="<%= restaurant.price_for_two %>" class="form-control mt-3" type="number" placeholder="Price for two" required>
+                        <div class="d-flex mt-3">
+                            <div class="d-flex flex-column w-100">
+                                <label class="mb-2" for="">Opening time</label>
+                                <input value="<%= restaurant.opening_time %>" class="form-control" type="time" id="open-time" placeholder="start" required>
+                            </div>
+                            <div class="d-flex flex-column w-100 mx-2">
+                                <label class="mb-2" for="">Closing time</label>
+                                <input value="<%= restaurant.closing_time %>" id="close-time" class="form-control" type="time" placeholder="end" required>
+                            </div>
+
+                            </div>
+                        <textarea id="description" class="form-control mt-3 mb-3" placeholder="Description"  required><%= restaurant.description %></textarea>
+                        <label class="mt-2 mb-2" for="">Food categories:</label>
+                        <select id="food-type" class="form-select" multiple="multiple" placeholder="Please select food category" data-categories="<%= restaurant.food_categories.join(',') %>" required>
+                            <option <%= restaurant.food_categories.includes('Fast food') && 'selected' %>>Fast food</option>
+                            <option <%= restaurant.food_categories.includes('Italian food') && 'selected' %>>Italian food</option>
+                            <option <%= restaurant.food_categories.includes('North indian food') && 'selected' %>>North indian food</option>
+                            <option <%= restaurant.food_categories.includes('Spicy food food') && 'selected' %>>South indian food</option>
+                            <option>Spicy food</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary mt-4 w-100">Update</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/js/multi-select-tag.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="/js/editresturantitem.js"></script>
+
+</body>
+</html>

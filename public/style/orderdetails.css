@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css?family=Palanquin+Dark:400,600');
+
+* {
+	outline:none;
+ -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+		 box-sizing: border-box;
+}
+
+
+
+.timeline {
+	width:90%;
+	height: 20px;
+	list-style: none;
+	text-align: justify;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	   -moz-transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%);
+	     -o-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 45%, rgba(191,128,11,1) 51%, rgba(255,255,255,0) 57%, rgba(255,255,255,0) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,0)), color-stop(45%, rgba(255,255,255,0)), color-stop(51%, rgba(191,128,11,1)), color-stop(57%, rgba(255,255,255,0)), color-stop(100%, rgba(255,255,255,0)));
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 45%, rgba(191,128,11,1) 51%, rgba(255,255,255,0) 57%, rgba(255,255,255,0) 100%);
+	background: -o-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 45%, rgba(191,128,11,1) 51%, rgba(255,255,255,0) 57%, rgba(255,255,255,0) 100%);
+	background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 45%, rgba(191,128,11,1) 51%, rgba(255,255,255,0) 57%, rgba(255,255,255,0) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 45%, rgba(191,128,11,1) 51%, rgba(255,255,255,0) 57%, rgba(255,255,255,0) 100%);
+}
+
+.timeline:after {display: inline-block; content: ""; width: 100%;}
+
+.timeline .point {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: #F2BB13;
+	text-align: center;
+	line-height: 1.2;
+	position: relative;
+	-webkit-border-radius: 50%;
+	        border-radius: 50%;
+}
+
+.timeline .point:before {
+	display: inline-block;
+	content: attr(data-year);
+	font-size: 26px;
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	   -moz-transform: translateX(-50%);
+	    -ms-transform: translateX(-50%);
+	     -o-transform: translateX(-50%);
+	        transform: translateX(-50%);
+}
+
+.timeline .point:nth-child(odd):before {
+	top: -40px;
+}
+.timeline .point:nth-child(even):before {
+	bottom: -40px;
+}
+
+.timeline .point:after {
+	display: inline-block;
+	content: attr(data-text);
+	font-size: 16px;
+    font-weight: 500;
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	   -moz-transform: translateX(-50%);
+	    -ms-transform: translateX(-50%);
+	     -o-transform: translateX(-50%);
+	        transform: translateX(-50%);
+}
+
+.timeline .point:nth-child(odd):after {
+	bottom: 0;
+	margin-bottom: -10px;
+	-webkit-transform: translate(-50%, 100%);
+	   -moz-transform: translate(-50%, 100%);
+	    -ms-transform: translate(-50%, 100%);
+	     -o-transform: translate(-50%, 100%);
+	        transform: translate(-50%, 100%);
+}
+.timeline .point:nth-child(even):after {
+	top: 0;
+	margin-top: -10px;
+	-webkit-transform: translate(-50%, -100%);
+	   -moz-transform: translate(-50%, -100%);
+	    -ms-transform: translate(-50%, -100%);
+	     -o-transform: translate(-50%, -100%);
+	        transform: translate(-50%, -100%);
+}
+/*without */
+.timeline .without-point {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: lightgray;
+	text-align: center;
+	line-height: 1.2;
+	position: relative;
+	-webkit-border-radius: 50%;
+	        border-radius: 50%;
+}
+
+.timeline .without-point:before {
+	display: inline-block;
+	content: attr(data-year);
+	font-size: 26px;
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	   -moz-transform: translateX(-50%);
+	    -ms-transform: translateX(-50%);
+	     -o-transform: translateX(-50%);
+	        transform: translateX(-50%);
+}
+
+.timeline .without-point:nth-child(odd):before {
+	top: -40px;
+}
+.timeline .without-point:nth-child(even):before {
+	bottom: -40px;
+}
+
+.timeline .without-point:after {
+	display: inline-block;
+	content: attr(data-text);
+	font-size: 16px;
+    width: 100px;
+    font-weight: 500;
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	   -moz-transform: translateX(-50%);
+	    -ms-transform: translateX(-50%);
+	     -o-transform: translateX(-50%);
+	        transform: translateX(-50%);
+}
+
+.timeline .without-point:nth-child(odd):after {
+	bottom: 0;
+	margin-bottom: -10px;
+	-webkit-transform: translate(-50%, 100%);
+	   -moz-transform: translate(-50%, 100%);
+	    -ms-transform: translate(-50%, 100%);
+	     -o-transform: translate(-50%, 100%);
+	        transform: translate(-50%, 100%);
+}
+.timeline .without-point:nth-child(even):after {
+	top: 0;
+	margin-top: -10px;
+	-webkit-transform: translate(-50%, -100%);
+	   -moz-transform: translate(-50%, -100%);
+	    -ms-transform: translate(-50%, -100%);
+	     -o-transform: translate(-50%, -100%);
+	        transform: translate(-50%, -100%);
+}
+
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+  }
+  
+  table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+  }
+  
+  table th,
+  table td {
+    padding: .625em;
+    text-align: center;
+  }
+  
+  table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  
+  @media screen and (max-width: 978px) {
+    table {
+      border: 0;
+    }
+  
+    table caption {
+      font-size: 1.3em;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    
+    table td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* general styling */
+
+
+@media screen and (max-width: 415px) {
+    .timeline .without-point:after {
+        display: inline-block;
+        content: attr(data-text);
+        font-size: 10px;
+        width: 100px;
+        font-weight: 500;
+        position: absolute;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+           -moz-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+             -o-transform: translateX(-50%);
+                transform: translateX(-50%);
+    }
+    .timeline .point:after {
+        display: inline-block;
+        content: attr(data-text);
+        font-size: 10px;
+        font-weight: 500;
+        position: absolute;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+           -moz-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+             -o-transform: translateX(-50%);
+                transform: translateX(-50%);
+    }
+}

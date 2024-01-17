@@ -1,0 +1,38 @@
+let loginToSignupBtn = document.getElementById('login-to-signup')
+let loginEmail = document.getElementById('login-email')
+let loginPassword = document.getElementById('login-password')
+let loginDiv = document.getElementById('login-div')
+let loginForm = document.getElementById('login-form')
+let closeBtn = document.getElementById('close-btn')
+loginToSignupBtn.onclick=()=>{
+    signUpDiv.style.display = 'block'
+    loginDiv.style.display = 'none'
+}
+
+loginForm.onsubmit=(e)=>{
+    e.preventDefault()
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", '', true);
+    
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    
+    xhr.onreadystatechange = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+           const res = JSON.parse(xhr.response)
+           if(res.loggined){
+                console.log('logged');
+                closeBtn.click()
+           }
+        }
+    }
+
+    let json = JSON.stringify({
+        type : 'login',
+        email : loginEmail.value,
+        password : loginPassword.value
+   });
+  
+    xhr.send(json);
+}
+
+

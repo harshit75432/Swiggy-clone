@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiggy</title>
+    <link rel="stylesheet" href="/style/order.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+</head>
+<body style="background-color: rgb(247, 107, 6);">
+    <div class="overflow-hidden">
+        <div class="container">
+         
+  
+          <div class="d-flex justify-content-center align-items-center mt-5">
+              <div class="d-flex flex-column p-5" style="background-color: white; width: 90%; box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.4), 3px 6px 20px 0 rgba(0, 0, 0, 0.4);">
+                <div class="d-flex justify-content-start mb-3">
+                    <img src="https://cdn.freelogovectors.net/wp-content/uploads/2023/11/swiggy-logo-freelogovectors.net_.png" height="80px" alt="">
+                </div>
+
+                <h4 class="text-center mb-5" style="font-weight: bold;">Orders</h4>
+                <table>
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Order id</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+      
+
+                      <% for(let k=0;k<orders.length;k++){ %>
+                        <% for(let i=0;i<orders[k].food_items.length;i++){ %>
+                          <% if(orders[k].food_items[i].type == 'simple'){ %>
+                           <tr>
+                             <td data-label="#"><%= k+1 %></td>
+                             <td data-label="Order id"><%=orders[k].order_id%></td>
+   
+                             <td data-label="Amount"><%= orders[k].food_items[i].price %></td>
+                             <td data-label="Customer Name"><%= orders[k].user_id.name %></td>
+                             <td data-label="Date"><%=details.getDate(orders[k].food_items[i].date) %></td>
+                             <td data-label="Time"><%=details.getTime( orders[k].food_items[i].date) %></td>
+                             <td data-label="Status"><span class="p-1 px-2" style="border: none; background-color: orangered; color: white;">Incomplete</span></td>
+                             <td data-label="Action"><a href="/orderdetails/<%= orders[k]._id %>" style="cursor: pointer;"><i class="bi bi-hand-index-thumb-fill text-primary"></i></a></td>
+                           </tr >
+                          <% }else{ %>
+                              <% for(let j=0;j<orders[k].food_items[i].customisation_items.length;j++){ %>                               
+                               <tr>
+                                 <td data-label="#"><%= count %></td>
+                                 <td data-label="Food name"><%=orders[k].order_id%></td>
+                                
+                                 <td data-label="Amount"><%= orders[k].food_items[i].customisation_items[j].price %></td>
+                                 <td data-label="Customer Name"><%= orders[k].user_id.name%></td>
+                                 <td data-label="Date"><%= details.getDate(orders[k].food_items[i].customisation_items[j].id) %></td>
+                                 <td data-label="Time"><%= details.getTime(orders[k].food_items[i].customisation_items[j].id ) %></td>
+                                 <td data-label="Status"><button class="p-1 px-2" style="border: none; background-color: orangered; color: white;">Incomplete</button></td>
+                                 <td data-label="Action"><a href="/orderdetails/<%= orders[k]._id %>" style="cursor: pointer;"><i class="bi bi-hand-index-thumb-fill text-primary"></i></a></td>
+                               </tr>
+                             <% } %>
+                       <% } %>
+                     <% } %>
+
+                      <% } %>
+                         
+                    
+                   
+                     
+                      
+                    </tbody>
+                  </table>
+                <div>
+
+                </div>
+              </div>
+          </div>
+  
+        </div>  
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

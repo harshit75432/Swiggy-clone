@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiggy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/css/multi-select-tag.css">
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body style="background-image: url('/images/background-image.jpg'); background-repeat: no-repeat; background-size: cover; ">
+
+    <div class="overflow-x-hidden" >
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-center mb-3">
+                <img src="https://cdn.freelogovectors.net/wp-content/uploads/2023/11/swiggy-logo-freelogovectors.net_.png" height="80px" alt="">
+               
+            </div>
+            <div class="d-flex align-items-center justify-content-center mb-5">
+                <div class="d-flex flex-column p-5" style="background-color: white; border-radius: 20px; width: 650px;">
+                    
+                    <h5 class="text-center mb-5" style="color: rgba(251, 111, 11, 0.803); font-weight: bold;"> REGISTER YOUR RESTUARANT</h5>
+                    
+                    <div id="alert-box">
+
+                    </div>
+
+                    
+                 
+                    <form id="addrestaurant-form" method="post">
+                        <span  style="font-size: 14px;">Restaurant images*</span>
+                        <input  id="images-select" class="form-control mt-2 mb-4" type="file" multiple="multiple" required>
+                        <span   style="font-size: 14px;">Restaurant name*</span>
+                        <input id="restaurant-name" class="form-control mt-2 mb-4" name="restaurant" placeholder="Restaurant name" type="text" required>
+                        <span   style="font-size: 14px;">Email*</span>
+                        <input id="email" class="form-control mt-2 mb-4" name="restaurant" placeholder="Email" type="email" required>
+                        <span  style="font-size: 14px;">Restaurant location select*</span>
+                        <select id="location" name="location" class="form-select mt-2 mb-4" aria-label="Default select example" required>
+                            <option value="" disabled selected>Please select restaurant's location</option>
+                           <% for(let i=0; i<locations.length;i++){ %>
+                               <option value="<%= locations[i]._id %>"><%= locations[i].name %></option>
+                           <% } %>
+                        </select>
+                        <span  style="font-size: 14px;">Restaurant address*</span>
+                        <input id="address" class="form-control mt-2 mb-4" type="text" placeholder="Resturant address" required>
+                        <span  style="font-size: 14px;">Price for two*</span>
+                        <input id="price" class="form-control mt-2 mb-4" type="number" placeholder="Price for two" required>
+                        <div class="d-flex mt-4 mb-4">
+                            <div class="d-flex flex-column w-100">
+                                <label class="mb-2" for="">Opening time</label>
+                                <input class="form-control" type="time" id="open-time" placeholder="start" required>
+                            </div>
+                            <div class="d-flex flex-column w-100 mx-2">
+                                <label class="mb-2" for="">Closing time</label>
+                                <input id="close-time" class="form-control" type="time" placeholder="end" required>
+                            </div>
+                        </div>
+                        <span  style="font-size: 14px;">Restaurant Description*</span>
+                        <textarea id="description" class="form-control mt-2 mb-4" placeholder="Description"  required></textarea>
+                        <label class="mt-2 mb-2" for="">Food categories:</label>
+                        <select id="food-type" class="form-select" aria-label="Default select example" multiple="multiple" placeholder="Please select food category">                       
+                            <option>Fast food</option>
+                            <option>Italian food</option>
+                            <option>North indian food</option>
+                            <option>South indian food</option>
+                            <option>Spicy food</option>
+                        </select>
+                        <button type="submit" class="mt-5 w-100 p-2" style="background-color: rgba(251, 111, 11, 0.803); color: white; border: none; outline: none; font-weight: 500;">Register</button>
+                        <span id="success-modal" data-bs-toggle="modal" data-bs-target="#myModal"></span>
+                    </form>
+             
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="myModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="d-flex justify-content-center flex-column align-items-center" >
+                <img src="https://cdn.freelogovectors.net/wp-content/uploads/2023/11/swiggy-logo-freelogovectors.net_.png" height="50px" width="90px" alt="">
+                <div class="d-flex justify-content-center align-items-center">
+                    <i class="bi bi-check2-all fs-4 text-success"></i>
+                    <span class="mx-2 text-success" style="font-size: 19px;">Success!</span>
+                </div>
+                <span style="color: gray; font-size: 18px;">Your datails has been under process!</span>
+                <span style="color: gray; font-size: 18px;">It will arrive soon.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/js/multi-select-tag.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="/js/restaurantsignup.js"></script>
+</body>
+</html>
