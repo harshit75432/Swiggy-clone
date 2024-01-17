@@ -194,7 +194,40 @@ table {
     letter-spacing: .1em;
     text-transform: uppercase;
   }
-  
+
+  .main-div{
+	background-color: rgb(243, 238, 238);
+	width: 800px; 
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.4), 3px 6px 20px 0 rgba(0, 0, 0, 0.4);
+	padding: 50px;
+  }
+  .order-buttton-u{
+	padding: 4px 8px 4px 8px;
+		background-color: gray;
+		color: white;
+		border-radius: 5px;
+		cursor: pointer;
+  }
+  .order-buttton{
+		padding: 4px 8px 4px 8px;
+		background-color: rgb(8, 8, 238);
+		color: white;
+		border-radius: 5px;
+		cursor: pointer;
+  }
+  .order-buttton-c{
+	padding: 4px 8px 4px 8px;
+	background-color: red;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+  .Pickup-name{
+	font-weight: bold;
+  }
+  .pickup-heading{
+	color: gray;
+  }
   @media screen and (max-width: 978px) {
     table {
       border: 0;
@@ -226,6 +259,7 @@ table {
       display: block;
       font-size: .8em;
       text-align: right;
+	  width: 100%;
     }
     
     table td::before {
@@ -244,7 +278,46 @@ table {
     }
   }
   
-  
+  @media screen and (max-width: 500px) {
+	.main-div{
+		background-color: rgb(243, 238, 238);
+		width: 400px; 
+		box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.4), 3px 6px 20px 0 rgba(0, 0, 0, 0.4);
+		padding: 30px;
+	  }
+
+	  .order-buttton-u{
+		padding: 4px 8px 4px 8px;
+			background-color: gray;
+			color: white;
+			border-radius: 5px;
+			font-size: 12px;
+			text-align: center;
+	  }
+	  .order-buttton{
+			padding: 6px 8px 6px 8px;
+			background-color: rgb(8, 8, 238);
+			color: white;
+			border-radius: 5px;
+			font-size: 12px;
+			text-align: center;
+	  }
+	  .order-buttton-c{
+		padding: 6px 8px 6px 8px;
+		background-color: red;
+		color: white;
+		border-radius: 5px;
+		font-size: 12px;
+		text-align: center;
+	  }
+	  .Pickup-name{
+		font-size: 13px;
+	  }
+	  .pickup-heading{
+		color: gray;
+		font-size: 12px;
+	  }
+  }
   
   
   

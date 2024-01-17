@@ -306,7 +306,7 @@ app.post('/editfooditem/:id',isLoggedIn,(req,res)=>{
 })
 
 app.get('/',isLoggedIn,(req,res)=>{
-    Restaurant.find()
+    Restaurant.find({admin_status : 'active'})
     .then((restaurants)=>{
         res.render('home',{restaurants : restaurants})
     })
@@ -623,6 +623,7 @@ app.post('/cart',isLoggedIn,(req,res)=>{
 
     }
     if(type == 'placed'){
+        let date = Date.now()
         let cart = req.session.cart
         let order_id = randomstring.generate(5)
         let new_order = new Order({
@@ -630,7 +631,8 @@ app.post('/cart',isLoggedIn,(req,res)=>{
             user_id : req.session.user_id,
             restaurant_id : cart.restaurant_id,
             order_id : order_id,
-            status : 'Accepted'
+            status : 'Preparing',
+            date : date
         })
         new_order.save(new_order)
         .then((order)=>{
@@ -848,6 +850,25 @@ app.get('/orders',isLoggedIn,(req,res)=>{
     })
 })
 
+app.post('/orders',isLoggedIn,(req,res)=>{
+    let {type,order_id} = req.body
+    if(type == 'delete'){
+        console.log('come',order_id);
+
+        Order.findByIdAndDelete({_id:order_id})
+        .then(()=>{
+            res.json({
+                deleted : true
+            })
+        })
+        .catch((err)=>{
+            res.json({
+                error : err
+            })
+        })
+    }
+})
+
 app.get('/createadmin',(req,res)=>{
     let password = '123456'
     bcrypt.hash(password, 10, function(err, hash) {
@@ -881,7 +902,7 @@ app.get('/congratulations',isLoggedIn,(req,res)=>{
 })
 
 app.get('/adminrestaurants',isLoggedIn,(req,res)=>{
-    Restaurant.find({admin_status:'active'}).populate('location','name')
+    Restaurant.find().populate('location','name')
     .then((restaurants)=>{
         res.render('adminresturants',{restaurants})
     })
@@ -899,62 +920,39 @@ app.get('/admin_restaurant_details/:location/:id',isLoggedIn,(req,res)=>{
 
 app.post('/admin_restaurant_details/:location/:id',isLoggedIn,(req,res)=>{
     let {type} = req.body
-    if(type == 'approve'){
-        let id  = req.body.restaurant_id
+    let id  = req.body.restaurant_id
+    if(type == 'block'){
+        Restaurant.findByIdAndUpdate(id,{
+            admin_status : 'block'})
+            .then(()=>{
+                res.json({
+                    blocked : true
+                })
+            })
+            .catch((err)=>{
+                res.json({
+                    error : err
+                })
+            })
+    }
+
+    if(type == 'active'){
         Restaurant.findByIdAndUpdate(id,{
             admin_status : 'active'})
             .then(()=>{
-                Restaurant.findById(id)
-                .then((restaurant)=>{
-                    let password = '123456'
-                    bcrypt.hash(password, 10, function(err, hash) {
-                        if(hash){
-
-                            let new_user = new User({
-                                name : restaurant.name,
-                                email : restaurant.email,
-                                password : hash,
-                                restaurant_id : restaurant._id, 
-                                user_type : 'restaurant'
-                            })
-                            new_user.save()
-                            .then(()=>{
-                                res.json({
-                                    approved : 'true',                                  
-                                })
-                            })
-                            .catch((err)=>{
-                                res.json({
-                                    error : err
-                                })
-                            })
-                        }
-                    });
-
+                res.json({
+                    actived : true
                 })
-             })
-             .catch((err)=>{
-                console.log(err);
-             })
-           
-        }
-       
-  
-    if(type == 'delete'){
-        let id  = req.body.restaurant_id
-        Restaurant.findByIdAndDelete({_id:id})
-        .then(()=>{
-            res.json({
-                deleted : true
             })
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+            .catch((err)=>{
+                res.json({
+                    error : err
+                })
+            })
     }
 })
 
-app.get('/orderdetails/:id',(req,res)=>{
+app.get('/orderdetails/:id',isLoggedIn,(req,res)=>{
     let orderId = req.params.id
     Order.findById(orderId).populate('user_id','name').populate('restaurant_id','name')
     .then((order)=>{
@@ -973,4 +971,36 @@ app.get('/orderdetails/:id',(req,res)=>{
             })
         }
     })
+})
+
+app.post('/orderdetails/:id',isLoggedIn,(req,res)=>{
+    let order_id = req.params.id
+    let {type} = req.body
+    if(type == 'accepted'){
+        Order.findByIdAndUpdate(order_id,{status : 'Completed'})
+        .then(()=>{
+            res.json({
+                accepted : true
+            })
+        })
+        .catch((err)=>{
+            res.json({
+                error : err
+            })
+        })
+    }
+    if(type == 'cancel'){
+        Order.findByIdAndUpdate(order_id,{status : 'Canceled'})
+        .then(()=>{
+            res.json({
+                canceled : true
+            })
+        })
+        .catch((err)=>{
+            res.json({
+                error : err
+            })
+        })
+    }
+   
 })

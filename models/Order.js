@@ -17,6 +17,9 @@ let orderSchema = new mongoose.Schema({
    },
    status : {
      type : String
+   },
+   date : {
+     type : Number
    }
 })
 
