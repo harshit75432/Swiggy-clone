@@ -61,10 +61,10 @@
            <div class="d-flex justify-content-center mb-3">
                 <h4 style="color: black;">Requests</h4>
            </div>
-        <form action="" method="get">
+        <form method="get">
            <div class="d-flex align-items-center p-2 px-3 w-100" style="background-color: white;">
-                <input class="w-100" placeholder="Search for request" type="text" style="border: none; outline: none; font-weight: 549;">
-                <i class="bi bi-search-heart"></i>
+                <input class="w-100" placeholder="Search for request" name="searchText" type="text" style="border: none; outline: none; font-weight: 549;">
+               <button type="submit" style="border: none; background-color: white;"><i class="bi bi-search-heart"></i></button> 
 
             </div>
         </form>
@@ -80,15 +80,26 @@
                   </tr>
                 </thead>
                 <tbody>
-                    <% for(let i=0;i<restaurants.length;i++){ %>
+                    <% if(restaurants.length>0){ %>
+                        <% for(let i=0;i<restaurants.length;i++){ %>
+                            <tr>
+                              <td data-label="S.no"><%= i+1 %></td>
+                              <td data-label="Name"><%= restaurants[i].name  %></td>
+                              <td data-label="Location"><%= restaurants[i].location.name %></td>
+                              <td data-label="Cost for two"><%= restaurants[i].price_for_two %></td>
+                              <td data-label="Details"><a href="/admin_request_details/<%= restaurants[i]._id %>">Select</a></td>
+                            </tr>
+                       <% } %>
+
+                    <% }else{ %>
                         <tr>
-                          <td data-label="S.no"><%= i+1 %></td>
-                          <td data-label="Name"><%= restaurants[i].name  %></td>
-                          <td data-label="Location"><%= restaurants[i].location.name %></td>
-                          <td data-label="Cost for two"><%= restaurants[i].price_for_two %></td>
-                          <td data-label="Details"><a href="/admin_request_details/<%= restaurants[i]._id %>">Select</a></td>
-                        </tr>
-                   <% } %>
+                            <td data-label="S.no"></td>
+                            <td data-label="Name"></td>
+                            <td data-label="Location">Not found</td>
+                            <td data-label="Cost for two"></td>
+                            <td data-label="Details"></td>
+                          </tr>
+                    <% } %>
                   
                 </tbody>
               </table>

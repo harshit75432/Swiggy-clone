@@ -74,10 +74,19 @@ app.get('/admin',(req,res)=>{
     res.render('admin')
 })
 app.get('/location',isLoggedIn,(req,res)=>{
-    Location.find()
-    .then((locations)=>{
-        res.render('location',{locations : locations})
-    })
+    let searchText = req.query.searchText
+    if(searchText){
+        Location.find({name:{$regex:searchText,$options:'i'}})
+        .then((locations)=>{
+            res.render('location',{locations : locations})
+        })
+    }else{
+        Location.find()
+        .then((locations)=>{
+            res.render('location',{locations : locations})
+        })
+    }
+   
 })
 app.get('/restaurant',(req,res)=>{
     Restaurant.find().populate('location','name')
@@ -86,11 +95,19 @@ app.get('/restaurant',(req,res)=>{
     })
 })
 app.get('/fooditems',isLoggedIn,(req,res)=>{
+    let searchText = req.query.searchText
     let restaurant_id = req.session.restaurant_id
-    Fooditem.find({restaurant_id : restaurant_id})
-    .then((fooditems)=>{
-        res.render('fooditems',{fooditems : fooditems,id : restaurant_id})
-    })
+    if(searchText){
+        Fooditem.find({name:{$regex:searchText,$options:'i'},restaurant_id : restaurant_id})
+        .then((fooditems)=>{
+            res.render('fooditems',{fooditems : fooditems,id : restaurant_id})
+        })
+    }else{
+        Fooditem.find({restaurant_id : restaurant_id})
+        .then((fooditems)=>{
+            res.render('fooditems',{fooditems : fooditems,id : restaurant_id})
+        })
+    }
 })
 app.get('/addlocation',isLoggedIn,(req,res)=>{
     res.render('addlocation')
@@ -758,12 +775,23 @@ app.post('/login',(req,res)=>{
         }) 
 })
 app.get('/admins',isLoggedIn,(req,res)=>{
-    
-    Restaurant.find({admin_status : 'under-process'}).populate('location','name')
-    .then((restaurants)=>{
-        console.log(restaurants);
-        res.render('admins',{restaurants : restaurants})
-    })
+    let searchText = req.query.searchText
+    if(searchText){
+        Restaurant.find({ name: { $regex: searchText, $options: "i"},
+    admin_status : 'under-process'}).populate('location','name')
+        .then((restaurants)=>{
+
+            res.render('admins',{restaurants : restaurants})
+        })
+        
+    }else{
+   Restaurant.find({admin_status:'under-process'})
+        .populate('location','name')
+        .then((restaurants)=>{
+            res.render('admins',{restaurants : restaurants})
+        })
+    }
+   
 })
 
 app.get('/admin_request_details/:id',isLoggedIn,async (req,res)=>{
@@ -910,10 +938,19 @@ app.get('/congratulations',isLoggedIn,(req,res)=>{
 })
 
 app.get('/adminrestaurants',isLoggedIn,(req,res)=>{
-    Restaurant.find().populate('location','name')
-    .then((restaurants)=>{
-        res.render('adminresturants',{restaurants})
-    })
+    let searchText = req.query.searchText
+    if(searchText){
+        Restaurant.find({name:{$regex:searchText,$options:'i'}}).populate('location','name')
+        .then((restaurants)=>{
+            res.render('adminresturants',{restaurants})
+        })
+    }else{
+        Restaurant.find().populate('location','name')
+        .then((restaurants)=>{
+            res.render('adminresturants',{restaurants})
+        })
+    }
+   
 })
 
 app.get('/admin_restaurant_details/:id',isLoggedIn,async (req,res)=>{
@@ -1015,15 +1052,23 @@ app.post('/orderdetails/:id',isLoggedIn,(req,res)=>{
 })
 
 app.get('/search',isLoggedIn,(req,res)=>{
-    let searchText = req.body.searchText
+    let searchText = req.query.searchText
     console.log(searchText);
-    Restaurant.find({name:{$regex: searchText,$options: '$i'}})
-    .then((data)=>{
-        console.log(data);
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-    res.render('search')
+    if(searchText){
+        Restaurant.find({name:{$regex:searchText,$options:'i'},
+        admin_status : 'active'}).populate('location','name')
+        .then((restaurants)=>{
+            console.log(restaurants);
+           res.render('search',{restaurants : restaurants,search : true})
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }else{
+        let restaurants = []
+        res.render('search',{restaurants:restaurants,search : false})
+    }
+    
+    
     
 })

@@ -40,7 +40,17 @@
                     <i id="toggle-left-menu" class="bi bi-list"></i>
                 </div>
                 <div class="header-right float-right">
-                    <i class="bi bi-person-circle"></i>
+                    
+                    <div class="dropdown">
+                        <i class="bi bi-person-circle" data-bs-toggle="dropdown" aria-expanded="false">
+                        
+                        </i>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Profile</a></li>
+                          <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                     
+                        </ul>
+                      </div>
                 </div>
             </div>
           
@@ -48,21 +58,37 @@
         </div>
 
         <div id="page-container">
-           
-            <div class="row g-2 gy-4">
-                <% for(let i=0;i<restaurants.length;i++){ %>
-                    <div class="col-xl-3 col-lg-4 col-sm-6">
-                        <div class="card" style="width: 18rem;">
-                            <img src="<%= restaurants[i].images[0] %>" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title"><%= restaurants[i].name %></h5>
-                              <span><%=restaurants[i].location.name %></span>
-                              <p class="card-text"><%= restaurants[i].description %></p>
-                              <a href="/admin_restaurant_details/<%= restaurants[i]._id %>" class="btn" style="background-color: rgb(241, 105, 20); color: white;">Details</a>
+                <div class="d-flex justify-content-center mb-3">
+                     <h4 style="color: black;">Restaurants</h4>
+                </div>
+             <form method="get">
+                <div class="d-flex align-items-center p-2 px-3 w-100" style="background-color: white;">
+                     <input class="w-100" placeholder="Search for request" name="searchText" type="text" style="border: none; outline: none; font-weight: 549;">
+                    <button type="submit" style="border: none; background-color: white;"><i class="bi bi-search-heart"></i></button> 
+     
+                 </div>
+             </form>
+            <div class="row g-2 gy-4 mt-3">
+                <% if(restaurants.length>0){ %>
+                    <% for(let i=0;i<restaurants.length;i++){ %>
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <div class="card" style="width: 18rem;">
+                                <img src="<%= restaurants[i].images[0] %>" class="card-img-top" alt="..." height="200px">
+                                <div class="card-body">
+                                  <h5 class="card-title"><%= restaurants[i].name %></h5>
+                                  <span><%=restaurants[i].location.name %></span>
+                                  <p class="card-text"><%= restaurants[i].description %></p>
+                                  <a href="/admin_restaurant_details/<%= restaurants[i]._id %>" class="btn" style="background-color: rgb(241, 105, 20); color: white;">Details</a>
+                                </div>
                             </div>
                         </div>
+                        
+                    <% } %>
+
+                <% }else{ %>
+                    <div class="d-flex justify-content-center">
+                        <h5 style="color: black;">Not found!</h5>
                     </div>
-                    
                 <% } %>
             </div>
             </div>

@@ -106,16 +106,16 @@ button.btn.btn-primary:hover {
 }
 
 #left-menu ul li.active a {
-    border-bottom: 2px solid #0e9aee;
+    border-bottom: 2px solid orangered;
     text-decoration: none;
 }
 
 #left-menu ul li.active a span {
-    color: #fff;
+    color: white;
 }
 
 #left-menu ul li.active a i {
-    background-color: #0e9aee;
+    background-color: orangered;
     color: #fff;
     text-align: center;
     padding-top: 6px;
@@ -123,7 +123,7 @@ button.btn.btn-primary:hover {
 
 
 #left-menu li.has-sub ul {
-    background-color: #454e62;
+    background-color: orangered;
     margin: 0 -10px;
     padding-left: 45px;
     height: 0;
