@@ -18,7 +18,7 @@
                     <span id="active" data-restaurant_id="<%= details._id %>" class="approve">Active</span>
                     <span id="block"></span>
                   <% } %>
-                    <a class="mx-2 edit" href="/editrestaurantitem/<%= details._id %>/<%= location %>">Edit</a>
+                    <a class="mx-2 edit" href="/editrestaurantitem/<%= details._id %>">Edit</a>
                 </div>
                 
             </div>
@@ -76,7 +76,7 @@
         </div>
         <div class="d-flex mt-5">
             <span class="heading">Location:</span>
-            <span class="mx-2 custom-text" ><%= location %></span>
+            <span class="mx-2 custom-text" ><%= locations_as_object[details.location] %></span>
         </div>
         <div class="d-flex mt-5">
             <span class="heading">Address:</span>

@@ -17,6 +17,7 @@ new MultiSelectTag('food-type',{
     placeholder: 'Please select food category......',
     onChange: function(values) {
         categories = values.map(item => item.value)
+        console.log(categories);
     }
 })
 

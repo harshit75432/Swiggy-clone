@@ -11,7 +11,7 @@
 <body style="background-color: rgb(171, 168, 168,0.2);">
     <div class="container">
         <div class="d-flex justify-content-between mb-4">
-            <span class="page" style="font-size: 13px;"><a href="/admins" style="text-decoration: none; color: gray; font-size: 13px;">Home</a>/<a href="/admin_resturant_details/<%=location %>/<%= restaurant._id %>" style="text-decoration: none; color: gray; font-size: 13px;">Details </a>/Edit</span>
+            <span class="page" style="font-size: 13px;"><a href="/admins" style="text-decoration: none; color: gray; font-size: 13px;">Home</a>/<a href="/admin_restaurant_details/<%= restaurant._id %>" style="text-decoration: none; color: gray; font-size: 13px;">Details </a>/Edit</span>
         </div>
             <div class="d-flex justify-content-center align-items-center">
                 <div class="d-flex flex-column p-5 rounded-2" style="width: 600px; background-color: white; box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
@@ -58,8 +58,8 @@
                             <option <%= restaurant.food_categories.includes('Fast food') && 'selected' %>>Fast food</option>
                             <option <%= restaurant.food_categories.includes('Italian food') && 'selected' %>>Italian food</option>
                             <option <%= restaurant.food_categories.includes('North indian food') && 'selected' %>>North indian food</option>
-                            <option <%= restaurant.food_categories.includes('Spicy food food') && 'selected' %>>South indian food</option>
-                            <option>Spicy food</option>
+                            <option <%= restaurant.food_categories.includes('Spicy food') && 'selected' %>>Spicy food</option>
+                            <option <%= restaurant.food_categories.includes('South indian food') && 'selected' %>>South indian food</option>
                         </select>
                         <button type="submit" class="btn btn-primary mt-4 w-100">Update</button>
                     </form>

@@ -55,16 +55,10 @@ addRestaurantForm.onsubmit=(e)=>{
             if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                 const res = JSON.parse(xhr.response)
                 if(res.created){
-                    imagesSelect.value=''
-                    resturantName.value=''
-                    locationSelect.value=''
-                    description.value=''
-                    price.value=''
-                    resturantFoodType.value=''
-                    categories=[]
-                    openingTime.value=''
-                    closingTime.value=''
-                    address.value=''
+                    setTimeout(()=>{
+                        console.log('over');
+                        window.location.href = window.location.href
+                    },3000)
                     document.getElementById('success-modal').click() 
                 }
             }

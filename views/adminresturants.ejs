@@ -12,12 +12,12 @@
 </head>
 <body>
     <div id="logo">
-        <span class="big-logo">Admin</span>
-        <span class="small-logo">Admin</span>
+        <img class="big-logo" src="https://cdn.freelogovectors.net/wp-content/uploads/2023/11/swiggy-logo-freelogovectors.net_.png" width="100px" height="60px" alt="">
+        <img class="small-logo" src="https://logolook.net/wp-content/uploads/2023/04/Swiggy-Emblem.png" width="60px" height="40px" alt="">
     </div>
     <div id="left-menu">
         <ul>
-            <li ><a href="/admins">
+            <li ><a href="/admins" style="text-decoration: none;">
                 <i class="bi bi-chat-left-text"></i>
                 <span>Requests</span>
             </a></li>
@@ -26,9 +26,9 @@
                 <i class="bi bi-journal-album"></i>
                 <span>Resturants</span>
             </a></li>            
-            <li><a href="/location">
+            <li><a href="/location" style="text-decoration: none;">
                 <i class="bi bi-geo-alt"></i>
-                <span>Location</span>
+                <span>Locations</span>
             </a></li>
 
         </ul>
@@ -58,7 +58,7 @@
                               <h5 class="card-title"><%= restaurants[i].name %></h5>
                               <span><%=restaurants[i].location.name %></span>
                               <p class="card-text"><%= restaurants[i].description %></p>
-                              <a href="/admin_restaurant_details/<%=restaurants[i].location.name %>/<%= restaurants[i]._id %>" class="btn" style="background-color: rgb(241, 105, 20); color: white;">Details</a>
+                              <a href="/admin_restaurant_details/<%= restaurants[i]._id %>" class="btn" style="background-color: rgb(241, 105, 20); color: white;">Details</a>
                             </div>
                         </div>
                     </div>

@@ -11,8 +11,9 @@
             <div class="d-flex justify-content-between mb-4">
                 <span class="page" style="font-size: 13px;"><a href="/admins" style="text-decoration: none; color: gray; font-size: 13px;">Home</a>/<%= details.name %></span>
                 <div>
-                    <span id="approve" data-restaurant_id="<%= details._id %>" class="approve">Approve</span>
-                    <a class="mx-2 edit" href="/editrestaurantitem/<%= details._id %>/<%= location %>">Edit</a>
+                    <span data-bs-toggle="modal" data-bs-target="#approve-modal"  class="approve">Approve</span>
+                    <a class="mx-2 edit" href="/editrestaurantitem/<%= details._id %>
+                        ">Edit</a>
                     <span  class="mx-2 delete" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</span>
                 </div>
                 
@@ -71,7 +72,8 @@
         </div>
         <div class="d-flex mt-5">
             <span class="heading">Location:</span>
-            <span class="mx-2 custom-text" ><%= location %></span>
+            <span class="mx-2 custom-text" ><%= locations_as_object[details.location]
+                 %></span>
         </div>
         <div class="d-flex mt-5">
             <span class="heading">Address:</span>
@@ -131,7 +133,24 @@
             </div>
           </div>
         </div>
-      </div>
+    </div>
+    <div id="approve-modal" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Approve</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure to Approve?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button id="approve" data-restaurant_id="<%= details._id %>" type="button" class="btn btn-success">Approve</button>
+            </div>
+          </div>
+        </div>
+    </div>
       <script src="/js/adminrequestdetails.js"></script>
     </body>
     <%-include('./partials/script') %>

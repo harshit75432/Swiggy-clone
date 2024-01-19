@@ -12,6 +12,7 @@ const Order = require('./models/order')
 const fs = require('fs')
 const bcrypt = require("bcrypt")
 const app = express()
+const helper = require('./data/helpingfunction')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(express.static('public'))
@@ -187,7 +188,7 @@ app.post('/editlocationitem/:id',isLoggedIn,(req,res)=>{
     })
 })
 
-app.get('/editrestaurantitem/:id/:location',isLoggedIn,(req,res)=>{
+app.get('/editrestaurantitem/:id',isLoggedIn,(req,res)=>{
     let location = req.params.location
     let id = req.params.id
     Location.find()
@@ -208,7 +209,7 @@ app.get('/editrestaurantitem/:id/:location',isLoggedIn,(req,res)=>{
     })
 })
 
-app.post('/editrestaurantitem/:id/:location',isLoggedIn,(req,res)=>{
+app.post('/editrestaurantitem/:id',isLoggedIn,(req,res)=>{
     let id = req.params.id
 
     if(req.body.type == 'delete-pic'){
@@ -719,7 +720,11 @@ app.post('/restaurantsignup',(req,res)=>{
       })
 })
 
-app.get('/login',(req,res)=>{
+app.get('/login',async(req,res)=>{
+
+    let locations_as_object = await helper.getLocationsAsObject()
+   
+
     res.render('login')
 })
 app.post('/login',(req,res)=>{
@@ -761,17 +766,20 @@ app.get('/admins',isLoggedIn,(req,res)=>{
     })
 })
 
-app.get('/admin_request_details/:location/:id',isLoggedIn,(req,res)=>{
+app.get('/admin_request_details/:id',isLoggedIn,async (req,res)=>{
     let restaurantId = req.params.id
-    let location = req.params.location
-    console.log(location);
+    let locations_as_object = await helper.getLocationsAsObject()
+    console.log(locations_as_object);
+
+
+
     Restaurant.findById(restaurantId)
     .then((details)=>{
-        res.render('adminrequestdetails',{details : details,location:location})
+        res.render('adminrequestdetails',{details : details,locations_as_object : locations_as_object})
     })
 })
 
-app.post('/admin_request_details/:location/:id',isLoggedIn,(req,res)=>{
+app.post('/admin_request_details/:id',isLoggedIn,(req,res)=>{
     let {type} = req.body
     if(type == 'approve'){
         let id  = req.body.restaurant_id
@@ -908,17 +916,18 @@ app.get('/adminrestaurants',isLoggedIn,(req,res)=>{
     })
 })
 
-app.get('/admin_restaurant_details/:location/:id',isLoggedIn,(req,res)=>{
+app.get('/admin_restaurant_details/:id',isLoggedIn,async (req,res)=>{
+    
     let restaurantId = req.params.id
-    let location = req.params.location
-    console.log(location);
+    let locations_as_object = await helper.getLocationsAsObject()
+   
     Restaurant.findById(restaurantId)
     .then((details)=>{
-        res.render('adminrestaurantsdetails',{details : details,location:location})
+        res.render('adminrestaurantsdetails',{details : details,locations_as_object : locations_as_object})
     })
 })
 
-app.post('/admin_restaurant_details/:location/:id',isLoggedIn,(req,res)=>{
+app.post('/admin_restaurant_details/:id',isLoggedIn,(req,res)=>{
     let {type} = req.body
     let id  = req.body.restaurant_id
     if(type == 'block'){
@@ -1003,4 +1012,18 @@ app.post('/orderdetails/:id',isLoggedIn,(req,res)=>{
         })
     }
    
+})
+
+app.get('/search',isLoggedIn,(req,res)=>{
+    let searchText = req.body.searchText
+    console.log(searchText);
+    Restaurant.find({name:{$regex: searchText,$options: '$i'}})
+    .then((data)=>{
+        console.log(data);
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+    res.render('search')
+    
 })
